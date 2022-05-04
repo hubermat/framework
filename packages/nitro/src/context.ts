@@ -62,6 +62,7 @@ export interface NitroContext {
   }
   storage: StorageOptions,
   assets: AssetOptions,
+  staticAllowFromAnyOrigin: undefined,
   _nuxt: {
     majorVersion: number
     dev: boolean
@@ -130,6 +131,7 @@ export function getNitroContext (nuxtOptions: NuxtOptions, input: NitroInput): N
       inline: !nuxtOptions.dev,
       dirs: {}
     },
+    staticAllowFromAnyOrigin: undefined,
     _nuxt: {
       majorVersion: nuxtOptions._majorVersion || 2,
       dev: nuxtOptions.dev,
@@ -203,6 +205,9 @@ export function getNitroContext (nuxtOptions: NuxtOptions, input: NitroInput): N
     dir: resolve(nitroContext._nuxt.srcDir, 'server/assets'), meta: true
   }
 
+  if (nuxtOptions.render && nuxtOptions.render.static) {
+    nitroContext.staticAllowFromAnyOrigin = nuxtOptions.render.static.allowFromAnyOrigin
+  }
   // console.log(nitroContext)
   // process.exit(1)
 
