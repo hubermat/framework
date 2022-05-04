@@ -62,7 +62,7 @@ export interface NitroContext {
   }
   storage: StorageOptions,
   assets: AssetOptions,
-  staticAllowFromAnyOrigin: undefined,
+  staticAllowFromAnyOrigin: boolean,
   _nuxt: {
     majorVersion: number
     dev: boolean
